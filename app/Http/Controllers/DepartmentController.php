@@ -5,11 +5,13 @@ use App\Models\Department;
 use Illuminate\Http\Request;
 
 class DepartmentController extends Controller {
-    // public function index() {
-    //     $departments      = Department::orderBy( 'id', 'asc' )->get();
-    //     $totalDepartments = Department::count();
-    //     return view( 'allDepartments', compact( ['departments', 'totalDepartments'] ) );
-    // }
+//     public function index() {
+//         $departments      = Department::where( 'name', 'Computer Science' )->with( 'teachers' )->get();
+//         $totalDepartments = Department::count();
+
+//         return $departments;
+//         // return view( 'allDepartments', compact( ['departments', 'totalDepartments'] ) );
+//     }
 
     public function index( Request $request ) {
         $departments = Department::query()
