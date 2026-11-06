@@ -5,7 +5,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Student extends Model {
     protected $guarded = [];
-    public function departments() {
+    public function department() {
         return $this->belongsTo( Department::class );
     }
     public function years() {

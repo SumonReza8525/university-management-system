@@ -13,8 +13,10 @@ class StudentController extends Controller {
      * Display a listing of the resource.
      */
     public function index() {
-        $students = Student::with( 'stuPersonalInfo' )->get();
-        return $students;
+        $students = Student::with( 'department' )->get();
+        // return $students;
+        return view( 'allStudents', compact( 'students' ) );
+
     }
 
     /**
@@ -82,7 +84,9 @@ class StudentController extends Controller {
      * Display the specified resource.
      */
     public function show( string $id ) {
-        //
+        $student = Student::with( ['stuPersonalInfo', 'department'] )->findOrFail( $id );
+        // return $student;
+        return view( 'detailsStudent', compact( 'student' ) );
     }
 
     /**
@@ -103,6 +107,8 @@ class StudentController extends Controller {
      * Remove the specified resource from storage.
      */
     public function destroy( string $id ) {
-        //
+        $student = Student::findOrFail( $id );
+        $student->delete();
+        return redirect()->route( 'student.index' )->with( 'success', 'Student deleted successfully' );
     }
 }
