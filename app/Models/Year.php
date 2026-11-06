@@ -7,4 +7,7 @@ class Year extends Model {
     // public $timestamps = false;
 
     protected $guarded = [];
+    public function students() {
+        return $this->hasOne( Student::class );
+    }
 }
